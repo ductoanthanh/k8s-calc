@@ -12,6 +12,18 @@ build:
                 '**/*.js': .
                 '**/*.css': .
                 '**/*.html': .
+        -   image: toanthanh/fib-server
+            context: server
+            docker:
+                dockerfile: Dockerfile.dev
+            sync:
+                '**/*.js': .
+        -   image: toanthanh/fib-worker
+            context: worker
+            docker:
+                dockerfile: Dockerfile.dev
+            sync:
+                '**/*.js': .
 deploy:
     kubectl:
         manifests:
