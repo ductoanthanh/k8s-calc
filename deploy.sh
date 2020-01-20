@@ -9,3 +9,8 @@ docker push toanthanh/fib-worker:latest
 docker push toanthanh/fib-client:$SHA
 docker push toanthanh/fib-server:$SHA
 docker push toanthanh/fib-worker:$SHA
+
+kubectl apply -f k8s
+kubectl set image deployments/server-deployment server=toanthanh/fib-server:$SHA
+kubectl set image deployments/client-deployment client=toanthanh/fib-client:$SHA
+kubectl set image deployments/worker-deployment worker=toanthanh/fib-worker:$SHA
